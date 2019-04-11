@@ -1,0 +1,36 @@
+<div class="ui modal modalAdicionarEntorno">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Adicionar Entorno
+    </div>
+
+    <form method="POST" action="{% url 'entorno_add' %}" class="ui content form">
+        {% csrf_token %}
+        <div class="fields">
+            <div class="fifteen wide field">
+                <label>Nome do Entorno</label>
+
+                <div class="ui corner labeled input">
+                    <input type="text" name="variavel_entorno" required>
+                    <div class="ui corner label">
+                        <i class="asterisk icon"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="one wide field">
+                <label>Cor</label>
+                <input type="color" name="cor" required/>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" value="Cadastrar" class="ui right teal button"/>
+        </div>
+    </form>
+
+</div>

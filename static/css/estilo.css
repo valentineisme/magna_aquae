@@ -1,0 +1,298 @@
+*  {
+	margin:0;
+	padding:0;
+}
+
+#margem-img{
+	margin-top: 30px !important;
+}
+
+.magna-menu{
+	border-radius: 0px !important;
+	/*background-color: #001B33 !important;*/
+	background-color: #003038 !important;
+	height: 100%;
+}
+.menu-teste{
+	min-height: 10%;
+	margin-bottom: 0px !important;
+}
+#logo{
+	height: 55px;
+	width: inherit;
+}
+
+.ui.header .icon:only-child {
+	margin-right: -0.25rem !important;
+	color: #fff !important;
+}
+.ui.header.title{
+	color: #fff !important;
+}
+
+.ui.secondary.vertical.pointing.menu .active.item {
+	background-color: #edeeef !important;
+	border-color: #00a3be !important;
+}
+
+.ui.secondary.vertical.pointing.menu .item:hover {
+	background-color: #edeeef !important;
+}
+
+.conteudo{
+	min-height: 85%;
+	margin: 0px !important;
+	font-size: 15px;
+	padding-bottom: 10px !important;
+}
+.rodape{
+	padding-top: 0.5%;
+	color: #fff;
+	text-align: center !important;
+	background-color: #dde5e8;
+	min-height: 5.5%;
+}
+.rodapeTexto{
+	color: gray !important;
+	text-align: center !important ;
+	margin-top: 10px !important;
+}
+.ui.icon.input>i.circular.icon {
+	top: .20em !important;
+}
+
+thead>tr>th.cabecalhoTabela{
+	background-color: #00427d !important;
+	color: #fff !important;
+}
+/*Cor do botão de delete */
+i.red.icon.delete{
+	color: #d65757 !important;
+}
+div.ui.teal.ribbon.large.label, .ui.right.labeled.icon.secundary.fluid.button{
+	background-color: #00427d !important;
+	border-color: #002d54 !important;
+}
+
+.botaoProximo{
+	background-color: #00427d !important;
+	color: #fff !important;
+}
+
+.botaoProximo:hover{
+	background-color: #233955 !important;
+}
+
+.zoomImagemMonitoramento{
+	border: solid #e8e8e8 8px !important;
+}
+.ui.ordered.steps .step.completed:before, .ui.steps .step.completed>.icon:before {
+	color: #19772f !important;
+}
+.ui.card{
+	padding-bottom: 2% !important;
+	margin-bottom: 1px !important;
+}
+
+.ui.card>.image>img, .ui.cards>.card>.image>img {
+	height: 250px !important;
+}
+
+/*.imagemHistorico{*/
+/*height: 330px !important;*/
+/*}*/
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+	font-size: 1.25em;
+	font-weight: 700;
+	color: white;
+	display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label * {
+	pointer-events: none;
+}
+
+.conteudoEtapas{
+	/*height: 79% !important;*/
+}
+
+.arvore{
+	color: #00427d !important;
+}
+.botaoUpload{
+	background-color: #007083 !important;
+	color: #fff !important;
+}
+
+.ui.center.aligned.icon.header{
+	margin-top: 1.7% !important;
+}
+
+/*.ui.toggle.checkbox input:checked~.box:before, .ui.toggle.checkbox input:checked~label:before {*/
+/*background-color: #065398 !important;*/
+/*}*/
+
+.cursorPointer:hover{
+	cursor: pointer;
+}
+
+.mensagemExcluir{
+	font-size: medium !important;
+}
+
+.formMonitoramento{
+	padding: 5% !important;
+}
+
+.cabecalhoDetalhesHistorico{
+	/*border-bottom: #ccc solid 1px !important;*/
+	background-color:  #007083 !important;
+	color: #fff !important;
+}
+
+.ui.horizontal.segments {
+	background-color: #efefef !important;
+}
+
+
+
+/* Carrosel  detalhesHistorico.html */
+.owl-item{
+	padding: 0.6%;
+}
+.owl-wrapper{
+	height: auto;
+}
+
+/* Tabela com o rótulo detalhesHistorico.html */
+.tabela.detalhes-historico{
+	margin: 0 2% 0 2%;
+}
+
+/* Paginacao monitoramento1.html*/
+.ui.pagination.menu {
+	padding: 1% 0 1% 0;
+}
+
+/* Padding no icone de dropdown no mobile menu principal */
+.dropdownMobile{
+	padding-left: 1%;
+}
+.botaoSecundario{
+	background-color: #008251 !important;
+	color: white !important;
+}
+
+.botoesZoomImagem{
+	background-color: white !important;
+}
+.ui.slider.range input[type="range"] {
+	-webkit-appearance: none;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 50rem;
+	border-color: rgba(0, 0, 0, 0.1);
+	margin-top: 15px;
+	padding: 3px 5px;
+	height: 1px;
+	width: 100%;
+}
+.ui.slider.range input[type="range"]::-moz-range-track {
+	background: none;
+	border: none;
+}
+.ui.slider.range input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background: #285b93;
+	border-radius: 10px;
+	height: 20px;
+	width: 20px;
+}
+.ui.slider.range input[type="range"]::-moz-range-thumb {
+	background: #285b93;
+	border-color: #285b93;
+	border-radius: 50rem;
+	height: 20px;
+	width: 20px;
+}
+
+/* Header */
+.large-header {
+	position: relative;
+	width: 100%;
+	background: #333;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+
+.demo-2 .large-header {
+	background-image: url('../img/imagemInicio.jpg');
+	background-position: center bottom;
+}
+
+.labelVegetacao{
+	background-color: #033403 !important;
+}
+
+.labelUsoDoSolo{
+	background-color: #74a048 !important;
+}
+
+.labelMar{
+	background-color: #afcaff !important;
+}
+
+.labelAreaUrbana{
+	background-color: #ba3acb !important;
+}
+
+.labelSoloExposto{
+	background-color: #d49c00 !important;
+}
+
+.labelVegetacaoSecundaria{
+	background-color: #74fb48 !important;
+}
+
+.labelAguaDoce{
+	background-color: #0055ff !important;
+}
+
+.labelAguaSalobra{
+	background-color: #00ffff !important;
+}
+
+.labelMontanhaPedra{
+	background-color: #AA5500 !important;
+}
+
+input[type="color"]{
+    width: 50px !important;
+    height: 50px !important;
+    border: 0 solid #ccc !important;
+    background-color: #e6e6e7 !important;
+    padding: 6px;
+    border-radius: 7px !important;
+}

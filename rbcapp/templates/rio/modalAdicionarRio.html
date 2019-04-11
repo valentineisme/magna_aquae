@@ -1,0 +1,57 @@
+<div class="ui modal modalAdicionarRio">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Cadastrar Rio
+    </div>
+
+    <form method="POST" action="{% url 'rio_add' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Nome do Rio</label>
+            {{ form.nome.errors }}
+            <div class="ui corner labeled input">
+                {{ form.nome }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Dimensão</label>
+            {{ form.dimensao.errors }}
+            <div class="ui corner labeled input">
+                {{ form.dimensao }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Bacia Hidrográfica</label>
+            {{ form.bacia_hidrografic.errors }}
+            <div class="ui corner labeled input">
+
+                {{ form.bacia_hidrografica }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Cadastrar"/>
+        </div>
+    </form>
+
+
+</div>

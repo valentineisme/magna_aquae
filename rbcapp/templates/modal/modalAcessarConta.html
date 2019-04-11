@@ -1,0 +1,73 @@
+<div class="ui modal modalAcessarConta">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui user small teal inverted circular icon"></i> Entrar
+    </div>
+
+
+    <form method="POST" action="{% url 'login' %}" class="ui content form">
+
+        {% if login %}
+            <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Você precisa estar logado para acessar o sistema!
+                </div>
+                <p>Por favor, insira os dados para entrar no sistema</p>
+            </div>
+        {% endif %}
+        {% if erro %}
+            <div class="ui negative message"><i class="close icon"></i>
+                <div class="header">Usuário ou Senha incorretos!</div>
+                <p>Por favor, verifique os dados e tente novamente.</p>
+            </div>
+        {% endif %}
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Usuário</label>
+
+            <div class="ui corner labeled input">
+                <input type="text" name="login" required>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Senha</label>
+            <div class="ui corner labeled input">
+                <input type="password" name="senha" required>
+
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Entrar"/>
+            OU
+            <a class="ui green large button botaoFacaParte cadastro">
+                Cadastre-se!
+            </a>
+        </div>
+
+    </form>
+
+    <div class="ui content">
+
+        <div class="ui segment esqueceuSenha recuperarSenha">
+            <i class="ui help inverted circular blue icon"></i>
+            <a href="#">Esqueceu a senha?</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+
+<div class="ui grid menu-teste">
+
+    <div class="one column  computer only row">
+
+        <div class="column">
+            <nav class="ui huge borderless inverted fluid menu computer only magna-menu">
+
+                <a class="item"  href="/">
+                    <img src="{% static  'img/magna-aqua-logo.png' %}" id="logo">
+                </a>
+
+                <div class="right menu">
+                    <a class="item acessarConta"><i class="ui user icon"></i> Entrar</a>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+
+    <div class="mobile tablet only row">
+        <div class="ui container fluid menu magna-menu">
+
+            <div class="ui dropdown item">
+                <i class="list layout large inverted icon dropdownMobile"></i>
+                <div class="menu">
+                    <a class="item">
+                        Quem somos
+                    </a>
+                    <a class="item" href="/rios/">
+                        Monitoramentos
+                    </a>
+                    <div class="divider"></div>
+                    <a class="item acessarConta"><i class="ui user icon"></i> Entrar</a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="{% static  'img/magna-aqua-logo-mobile.png' %}" id="logo">
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+    <div class="two wide column"></div>
+    <article class="twelve wide column">
+        <h3 class="ui center aligned icon header">
+            <i class="history arvore circular icon"></i>
+            <div class="content">
+                Histórico de Monitoramento
+            </div>
+        </h3>
+
+        <table class="ui large center aligned selectable table">
+            <thead>
+            <tr>
+                <th class="collapsing cabecalhoTabela">Ponto (lat. long.)</th>
+                <th class="cabecalhoTabela ">Rio</th>
+                <th class="cabecalhoTabela">Bacia Hidrográfica</th>
+                <th class="collapsing cabecalhoTabela">Detalhes</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for ponto in pontos %}
+                <tr>
+                    <td>{{ ponto.ponto }}</td>
+                    <td>{{ ponto.rio }}</td>
+                    <td>{{ ponto.bacia }}</td>
+                    <td class="center aligned">
+                        <a href="{% url 'historico_detalhes' ponto_id=ponto.id %}">
+                            <i class="ui large teal plus square outline icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui right floated pagination secondary menu">
+                        {% if pontos.has_previous %}
+                            <a href="?page={{ pontos.previous_page_number }}" class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                        {% endif %}
+                        <a class="item">Página {{ pontos.number }} de {{ pontos.paginator.num_pages }}</a>
+                        {% if pontos.has_next %}
+                            <a href="?page={{ pontos.next_page_number }}" class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </article>
+    <div class="two wide column"></div>
+
+
+{% endblock %}

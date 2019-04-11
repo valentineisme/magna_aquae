@@ -1,0 +1,103 @@
+<div class="ui modal modalAdicionarColeta">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Cadastrar Coleta
+    </div>
+
+    <form method="POST" action="{% url 'coleta_add' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Data da Coleta</label>
+
+            <div class="ui corner labeled input">
+                <input type="date" name="data_coleta" required>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Bacia Hidrográfica</label>
+
+            <div class="ui corner labeled input">
+                <select onchange="bacia_para_rio()" name="bh" id="bh">
+                    <option value="selecione">Selecione uma bacia hidrografica</option>
+                    {% for bh in bhs %}
+                        <option value="{{ bh.id }}">{{ bh.nome }}</option>
+                    {% endfor %}
+                </select>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Rio</label>
+
+            <div class="ui corner labeled input">
+                <select onchange="rio_para_ponto()" name="rio" id="rio" disabled="True">
+                    <option value="selecione">Selecione primeiro uma bacia hidrográfica</option>
+                </select>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Ponto de Monitoramento</label>
+
+            <div class="ui corner labeled input">
+                <select name="ponto" id="ponto_monitoramento" disabled="True">
+                    <option value="selecione">Selecione primeiro um rio</option>
+                </select>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="field">
+            <div class="ui three column grid">
+                {% for s in substancias %}
+                    <div class="column">
+                        <div class="field">
+                            <label>{{ s.nome }}</label>
+
+                            <div class="ui corner labeled input">
+                                <input name="substancia" type="hidden" readonly="readonly" value="{{ s.id }}">
+                                <input name="valor_coletado" id="id_valor_coletado" pattern="(\d+\.?)+" required="True"
+                                       title="Apenas números e ponto" type="text"/>
+                                <div class="ui corner label">
+                                    <i class="asterisk icon"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="field">
+            <label>Deseja fazer o monitoramento dessa coleta?</label>
+            <div class="ui slider checkbox">
+                <input type="checkbox" name="mon">
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Cadastrar"/>
+        </div>
+    </form>
+
+
+</div>

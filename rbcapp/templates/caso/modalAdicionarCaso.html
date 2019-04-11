@@ -1,0 +1,80 @@
+<div class="ui modal modalAdicionarCaso">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Cadastrar Caso
+    </div>
+
+    <form method="POST" action="{% url 'caso_add' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Classificação IAP</label>
+
+            <div class="ui corner labeled input">
+                {{ form.iap }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Classificação IVA</label>
+
+            <div class="ui corner labeled input">
+                {{ form.iva }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Entorno</label>
+
+            <div class="ui corner labeled input">
+                {{ form.entorno }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Risco</label>
+
+            <div class="ui corner labeled input">
+                {{ form.risco }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Solução Sugerida</label>
+
+            <div class="ui corner labeled input">
+                {{ form.solucao_sugerida }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Cadastrar"/>
+        </div>
+    </form>
+
+
+</div>

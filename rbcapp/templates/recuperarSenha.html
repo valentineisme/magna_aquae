@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPaginaInicial.html' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+
+    <div class="two wide column"></div>
+    <article class="twelve wide column">
+
+        <nav class="ui text stackable menu">
+            <h2 class="ui header">
+                Recuperar senha
+            </h2>
+        </nav>
+        <div class="row">
+            {% if senha %}
+                <form method="POST" action="{% url 'recuperar_senha' %}" class="ui large form">
+                {% csrf_token %}
+                {% if senha_erro %}
+                    <div class="ui negative message"><i class="close icon"></i> {{ senha_erro }} </div>
+                {% endif %}
+                <div class="equal width fields">
+                    <div class="field">
+                        <label>Senha</label>
+                        <input type="password" name="senha" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Digite a senha novamente</label>
+                        <input type="password" name="senha2" required>
+
+                    </div>
+                </div>
+                <input type="hidden" name="username" value="{{ us.username }}"/>
+                <div class="ui fluid buttons">
+                    <a href="{% url 'index' %}" class="ui button">Cancelar</a>
+                    <button class="ui botaoUpload button" type="submit">Alterar senha</button>
+
+                </div>
+            {% elif login %}
+                <a href="#" class="ui positive message"><i class="close icon"></i>A senha foi alterado com
+                    sucesso!</a><br><br>
+                <div class="actions">
+                    <a href="{% url 'index' %}" class="ui cancel button">Voltar</a>
+                    <a class="ui right teal button acessarConta">Entrar</a>
+                    </a>
+                </div>
+            {% else %}
+
+                <form method="GET" action="{% url 'recuperar_senha' %}" class="ui content form">
+                    <div class="field">
+                        <label>Pergunta de segurança</label>
+
+                        <div class="ui corner labeled input">
+                            {{ us.pergunta }}
+                        </div>
+                    </div>
+                    <div class="field">
+
+                        {% if erro %}
+                            <div class="ui negative message"><i class="close icon"></i> Resposta errada! Tente
+                                novamente.
+                            </div>
+                        {% endif %}
+                        <label>Resposta</label>
+
+                        <div class="ui corner labeled input">
+                            <input type="text" maxlength="20" name="resposta"/>
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="username" value="{{ us.username }}"/>
+                    <div class="actions">
+                        <a href="{% url 'index' %}" class="ui cancel button">Cancelar</a>
+                        <button class="ui right teal button">Recuperar</button>
+                        </a>
+                    </div>
+                </form>
+
+
+            {% endif %}
+        </div>
+    </article>
+
+    {% include 'modal/modalAcessarConta.html' %}
+
+{% endblock %}
+

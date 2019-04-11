@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magna Aquae</title>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/range.css' %}">
+    <link rel="stylesheet" href="{% static 'css/semantic/semantic.min.css' %}">
+    <link rel="stylesheet" href="{% static 'owl/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'owl/owl.theme.css' %}">
+</head>
+
+<body>
+<!--======================= MENU ============================== -->
+
+
+  {% block 'menu' %}{% endblock %}
+
+
+<!--======================= FIM MENU ============================== -->
+<!--======================= CONTEÚDO ============================== -->
+
+<section class="ui stackable grid conteudo">
+    {% block 'conteudo' %}{% endblock %}
+</section>
+
+<!--======================= FIM CONTEÚDO ==========================-->
+<!--======================= RODAPÉ ================================ -->
+
+
+<footer class="rodape">
+    <h5 class="ui center aligned header rodapeTexto">Magna Aquae. Todos os direitos reservados. &copy;</h5>
+</footer>
+
+{#<h3 class="ui bottom attached header">#}
+{#  Bottom Attached#}
+{#</h3>#}
+
+<!--======================= FIM RODAPÉ ============================== -->
+
+
+<script src="{% static 'js/jquery-v1.min.js' %}"></script>
+<script src="{% static 'css/semantic/semantic.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/sortTable.js' %}"></script>
+<script src="{% static 'owl/owl.carousel.js' %}"></script>
+<script src="{% static 'js/jquery.panzoom.js' %}"></script>
+<script src="{% static 'js/range.js' %}"></script>
+<script src="{% static 'js/ajax.js' %}"></script>
+
+</body>
+</html>

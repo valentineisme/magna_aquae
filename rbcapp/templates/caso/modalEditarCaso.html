@@ -1,0 +1,58 @@
+<div class="ui modal modalEditarCaso">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Editar Rio
+    </div>
+
+    <form method="POST" action="{% url 'rio_edit' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Nome do Rio</label>
+
+            <div class="ui corner labeled input">
+                <input type="text" name="nome" id="nome_rio" required>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Dimensão</label>
+
+            <div class="ui corner labeled input">
+                <input type="text" name="dimensao" id="dimensao_rio" required>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Bacia Hidrográfica</label>
+
+            <div class="ui corner labeled input">
+                <input type="text" name="bacia_hidrografica" id="bh_rio" required disabled="True">
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+        <input type="hidden" name="rio_id" id="id_rio"/>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Editar"/>
+        </input>
+        </div>
+    </form>
+
+
+</div>

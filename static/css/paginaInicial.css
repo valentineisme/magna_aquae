@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #3e4c34 !important;
+}
+.paginaInicial{
+	background-image: url(../img/planoDeFundo.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+    height: 100vh;
+
+
+}
+
+.pequenaDescricao{
+    width: 100%;
+    min-height: 20vh;
+    margin: 0 !important;
+    background-color:#3e4c34;
+    border-bottom: #303d28 solid 9px;
+}
+
+.pequenaDescricao h2{
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+.descricaoMeio{
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+
+}
+
+.informacoesAdicionais{
+    width: 100%;
+    min-height: 25vh !important;
+    background-color: #686868 !important;
+    border-bottom: #43434d 6px solid !important;
+    padding: 1% !important;
+    color: #fff;
+    margin: 0 !important;
+}
+
+.descricaoFim {
+    width: 100%;
+    min-height: 15vh !important;
+    background-color: #fff !important;
+    padding: 1% !important;
+    color: #565658;
+    margin: 0 !important;
+}
+
+.paginaInicial .textoMonitoramento{
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 25%;
+    margin: 1px auto;
+    display: block;
+    text-align: center;
+    font-size: 2.5em !important;
+    /*font-family: 'Cuprum', sans-serif;*/
+    font-family: 'Marvel', sans-serif !important;
+}
+
+.paginaInicial .textoMonitoramento .header{
+    color: #005b6d !important;
+}
+.botaoCorVerde{
+    background-color: #00a3be!important;
+    color: white !important;
+}
+
+.botaoCorVerde a{
+    color: white !important;
+}
+
+.botaoCorVerde:hover{
+    background-color: #00768f !important;
+    color: white !important;
+}
+
+.one.column.computer.only.row, .mobile.tablet.only.row{
+    padding-bottom: 0 !important;
+}
+
+.botaoFacaParte{
+    margin-bottom: 5px !important;
+}
+
+.esqueceuSenha{
+    background-color: #f0fff5 !important;
+    border-color: #a1e2e5!important;
+}

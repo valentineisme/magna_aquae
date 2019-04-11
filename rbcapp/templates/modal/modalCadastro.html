@@ -1,0 +1,137 @@
+<div class="ui modal modalCadastro">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui user small teal inverted circular icon"></i> Cadastro de Usuário
+    </div>
+
+    <form method="POST" action="{% url 'index' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Nome</label>
+
+            <div class="ui corner labeled input">
+                {{ form.first_name }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Sobrenome</label>
+
+            <div class="ui corner labeled input">
+                {{ form.last_name }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>E-Mail</label>
+
+            <div class="ui corner labeled input">
+                {{ form.email }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="field">
+            <label>CPF</label>
+            {% if form.cpf.errors %}
+                <div class="ui negative message"><i class="close icon"></i> {{ form.cpf.errors }}</div>
+            {% endif %}
+            <div class="ui corner labeled input">
+
+                {{ form.cpf }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Usuário</label>
+            {% if form.username.errors %}
+                <div class="ui negative message"><i class="close icon"></i> {{ form.username.errors }}</div>
+            {% endif %}
+            <div class="ui corner labeled input">
+                {{ form.username }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+
+        {% if senha_erro %}
+            <div class="ui negative message"><i class="close icon"></i> As senhas não conferem!</div>
+        {% endif %}
+        <div class="field">
+            <label>Senha</label>
+            <div class="ui corner labeled input">
+                {{ form.password }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Confirme sua senha</label>
+            <div class="ui corner labeled input">
+                {{ form.senha_conferir }}
+
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Pergunta de segurança</label>
+
+            <div class="ui corner labeled input">
+                {{ form.pergunta }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Resposta</label>
+
+            <div class="ui corner labeled input">
+                {{ form.resposta }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input class="ui right teal button" type="submit" value="Cadastra-se"/>
+        </div>
+
+    </form>
+
+</div>

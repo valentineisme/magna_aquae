@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+
+{% block 'conteudo' %}
+
+
+    <div class="two wide column">
+        {% include 'menu/menuVertical.html' %}
+    </div>
+
+    <article class="twelve wide column">
+
+        <div class="row">
+
+            <nav class="ui text stackable menu">
+                <h2 class="ui header">
+                    Coletas
+                </h2>
+{#                <div onchange="coleta_filtro();" class="ui right floated selection search dropdown item">#}
+{#                    <input type="hidden" name="Rio">#}
+{#                    <i class="dropdown icon"></i>#}
+{#                    <div class="default text">Rios</div>#}
+{#                    <div class="menu">#}
+{#                        <div class="item" id="rio_pes" data-value="selecione">Todos</div>#}
+{#                        {% for rio in rios %}#}
+{#                            <div class="item" id="rio_pes" data-value="{{ rio.id }}">{{ rio.nome }}</div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+
+            </nav>
+        </div>
+
+        <table class="ui striped celled unstackable table">
+            <thead>
+            <tr>
+                <th class="no-sort" colspan="5">
+                    <div class="ui teal ribbon large label">Lista de Coletas</div>
+                    <button class="right floated ui labeled botaoUpload icon button adicionarColeta">
+                        <i class="icon add"></i>
+                        Adicionar Coleta
+                    </button>
+                </th>
+
+            </tr>
+            <tr>
+                <th>Rio</th>
+                <th>Ponto</th>
+                <th>Data</th>
+                <th class="collapsing center aligned" colspan="2">Ações</th>
+            </tr>
+            </thead>
+            <tbody id="tbcoleta">
+            {% if dados %}
+                {% for dado in dados %}
+                    <tr>
+                        <td>{{ dado.rio }}</td>
+                        <td>{{ dado.ponto_monitoramento }}</td>
+                        <td>{{ dado.data_coleta }}</td>
+                        <td class="collapsing center aligned">
+                            <input type="hidden" id="tab_rio" name="{{ dado.id }}" value="{{ dado.rio }}"/>
+                            <input type="hidden" id="tab_ponto" name="{{ dado.id }}"
+                                   value="{{ dado.ponto_monitoramento }}"/>
+                            <input type="hidden" id="tab_data" name="{{ dado.id }}" value="{{ dado.data_coleta }}"/>
+                            <a class="cursorPointer infoColeta" onclick="coleta_info({{ dado.id }});">
+                                <i class="ui plus grey large icon"></i>
+                            </a>
+                        </td>
+                        <td class="collapsing center aligned">
+                            <input type="hidden" id="{{ dado.id }}" value="{{ dado.nome }}"/>
+                            <a class="cursorPointer excluirColeta" onclick="coleta_excluir({{ dado.id }});">
+                                <i class="ui trash red large icon"></i>
+                            </a>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>Não há dados cadastrados.</td></tr>
+            {% endif %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui right floated pagination secondary menu">
+                        {% if dados.has_previous %}
+                            <a href="?page={{ dados.previous_page_number }}" class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                        {% endif %}
+                        <a class="item">Página {{ dados.number }} de {{ dados.paginator.num_pages }}</a>
+                        {% if dados.has_next %}
+                            <a href="?page={{ dados.next_page_number }}" class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </article>
+
+
+
+    {% include 'coleta/modalAdicionarColeta.html' %}
+    {% include 'coleta/modalExcluirColeta.html' %}
+    {% include 'coleta/modalInfoColeta.html' %}
+
+{% endblock %}

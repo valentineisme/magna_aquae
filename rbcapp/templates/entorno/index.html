@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+
+{% block 'conteudo' %}
+
+
+    <div class="two wide column"></div>
+
+    <article class="twelve wide column">
+
+        <div class="row">
+
+            <nav class="ui text stackable menu">
+                <h2 class="ui header">
+                    Entornos
+                </h2>
+{#                <div class="right floated item">#}
+{#                    <div class="ui icon large input">#}
+{#                        <input type="text" placeholder="Search...">#}
+{#                        <i class="inverted circular search link icon"></i>#}
+{#                    </div>#}
+{#                </div>#}
+
+            </nav>
+        </div>
+
+        <table class="ui celled unstackable striped table">
+            <thead>
+            <tr>
+                <th class="no-sort" colspan="5">
+                    <div class="ui teal ribbon large label">Lista de Entornos</div>
+                    <button class="right floated ui labeled botaoUpload icon button adicionarEntorno">
+                        <i class="icon add"></i>
+                        Adicionar Entorno
+                    </button>
+                </th>
+
+            </tr>
+            <tr>
+                <th>Entorno</th>
+                <th class="collapsing center aligned">Cor</th>
+                <th class="collapsing center aligned">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for dado in dados %}
+                <tr>
+                    <td>{{ dado.variavel_entorno }}</td>
+                    <td><div style="background-color: {{ dado.cor }} !important;" class="ui empty circular label"></div></td>
+                    <td class="collapsing">
+                        <a class="cursorPointer excluirEntorno" onclick="entorno_excluir({{ dado.id }});">
+                            <i class="ui delete red large icon"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui right floated pagination secondary menu">
+                        {% if dados.has_previous %}
+                            <a href="?page={{ dados.previous_page_number }}" class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                        {% endif %}
+                        <a class="item">Página {{ dados.number }} de {{ dados.paginator.num_pages }}</a>
+                        {% if dados.has_next %}
+                            <a href="?page={{ dados.next_page_number }}" class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </article>
+
+
+
+    {% include 'entorno/modalAdicionarEntorno.html' %}
+    {% include 'entorno/modalExcluirEntorno.html' %}
+
+{% endblock %}

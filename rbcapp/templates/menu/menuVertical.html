@@ -1,0 +1,55 @@
+<div class="ui secondary vertical pointing fluid menu">
+    {% if request.get_full_path == "/bacia-hidrografica/" %}
+        <a class="active item" href="{% url 'bacia_hidrografica_listar' %}">
+            Bacias Hidrográfcias
+        </a>
+        <a class="item" href="{% url 'rio_listar' %}">
+            Rios
+        </a>
+        <a class="item" href="{% url 'ponto_listar' %}">
+            Pontos
+        </a>
+        <a class="item" href="{% url 'coleta_listar' %}">
+            Coletas
+        </a>
+    {% elif request.get_full_path == "/rio/" %}
+        <a class="item" href="{% url 'bacia_hidrografica_listar' %}">
+            Bacias Hidrográfcias
+        </a>
+        <a class="active item" href="{% url 'rio_listar' %}">
+            Rios
+        </a>
+        <a class="item" href="{% url 'ponto_listar' %}">
+            Pontos
+        </a>
+        <a class="item" href="{% url 'coleta_listar' %}">
+            Coletas
+        </a>
+    {% elif request.get_full_path == "/ponto/" %}
+        <a class="item" href="{% url 'bacia_hidrografica_listar' %}">
+            Bacias Hidrográfcias
+        </a>
+        <a class=" item" href="{% url 'rio_listar' %}">
+            Rios
+        </a>
+        <a class="active item" href="{% url 'ponto_listar' %}">
+            Pontos
+        </a>
+        <a class="item" href="{% url 'coleta_listar' %}">
+            Coletas
+        </a>
+    {% else %}
+        <a class="item" href="{% url 'bacia_hidrografica_listar' %}">
+            Bacias Hidrográfcias
+        </a>
+        <a class=" item" href="{% url 'rio_listar' %}">
+            Rios
+        </a>
+        <a class="item" href="{% url 'ponto_listar' %}">
+            Pontos
+        </a>
+        <a class="active item" href="{% url 'coleta_listar' %}">
+            Coletas
+        </a>
+    {% endif %}
+</div>

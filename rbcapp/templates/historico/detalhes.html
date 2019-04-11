@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block 'conteudo' %}
+    <div class="one wide column"></div>
+    <div class="fourteen wide column">
+        <h3 class="ui center aligned icon header">
+            <i class="wait arvore circular icon"></i>
+            <div class="content">
+                Evolução da Paisagem
+            </div>
+        </h3>
+        <article class="tabela detalhes-historico">
+            <table class="ui striped celled stackable table">
+                <thead>
+                <tr>
+                    <th colspan="5">
+                        <div class="ui teal ribbon large label">Ponto de monitoramento</div>
+
+                    </th>
+                </tr>
+                <tr>
+                    <th>{{ ponto }}</th>
+                    <th>{{ ponto.rio }}</th>
+                    {#                    <th>Bacia Hidrográfica: Rio Parati</th>#}
+                </tr>
+                </thead>
+
+            </table>
+        </article>
+        <div id="margem-img">
+            <article id="owl-homepage" class="ui grid">
+                {% for img in imgs %}
+                    <div class="ui fluid card">
+                        <div class="ui vertical cabecalhoDetalhesHistorico content">
+                            <h4 class="center aligned cabecalhoDetalhesHistorico header"><i
+                                    class="ui icon calendar"></i>
+                                {{ img.data_emissao }}</h4>
+                        </div>
+                        <div class="image">
+                            <img src="/media/{{ img.imagem }}">
+                        </div>
+                        <div class="content">
+                            <a class="header">{{ img.titulo }}</a>
+                            {% if img.coleta %}
+                                <div class="ui divided list">
+                                    <div class="item">
+                                        Entorno: {{ img.entorno }}
+                                    </div>
+                                    <div class="item">
+                                        {% if img.iap == 'otima' %}
+                                            IAP: Ótima
+                                        {% elif img.iap == 'boa' %}
+                                            IAP: Boa
+                                        {% elif img.iap == 'regular' %}
+                                            IAP: Regular
+                                        {% elif img.iap == 'ruim' %}
+                                            IAP: Ruim
+                                        {% else %}
+                                            IAP: Péssima
+                                        {% endif %}
+                                    </div>
+                                    <div class="item">
+                                        {% if img.iva == 'otima' %}
+                                            IVA: Ótima
+                                        {% elif img.iva == 'boa' %}
+                                            IVA: Boa
+                                        {% elif img.iva == 'regular' %}
+                                            IVA: Regular
+                                        {% elif img.iva == 'ruim' %}
+                                            IVA: Ruim
+                                        {% else %}
+                                            IVA: Péssima
+                                        {% endif %}
+                                    </div>
+                                    <div class="item">
+                                        {% if img.risco == 'A' %}
+                                            Risco: Alto
+                                        {% elif img.risco == 'M' %}
+                                            Risco: Médio
+                                        {% else %}
+                                            Risco: Baixo
+                                        {% endif %}
+                                    </div>
+                                    <div class="item">
+                                        Solução: {{ img.solucao }}
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </article>
+        </div>
+
+    </div>
+
+    <div class="one wide column"></div>
+
+
+{% endblock %}

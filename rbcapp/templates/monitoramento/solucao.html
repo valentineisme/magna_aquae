@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+{% block 'conteudo' %}
+
+    <div class="two wide column"></div>
+
+    <!--======================= FIM MENU VERTICAL ESQUERDO ============================== -->
+    <!--================================================================================= -->
+
+    <!--======================= CONTEÚDO PRINCIPAL [MEIO] ============================== -->
+    <!--================================================================================ -->
+    <article class="twelve wide column">
+
+        <div class="ui one column centered conteudoEtapas grid">
+
+            <div class="column">
+                <header class="ui ordered fluid tablet stackable steps">
+                    <div class="completed step">
+                        <div class="content">
+                            <div class="title">Selecionar Localização</div>
+                            <div class="description">Bacia, Rio, Ponto e Coleta</div>
+                        </div>
+                    </div>
+                    <div class="completed step">
+                        <div class="content">
+                            <div class="title">Selecionar Imagem</div>
+                            <div class="description">Imagem referente a localização</div>
+                        </div>
+                    </div>
+                    <div class="completed step">
+                        <div class="content">
+                            <div class="title">Selecionar Entorno</div>
+                            <div class="description">Entorno de acordo com a imagem</div>
+                        </div>
+                    </div>
+
+                    <div class="active step">
+                        <div class="content">
+                            <div class="title">Solução</div>
+                            <div class="description">Salvar a solução no histórico da paisagem</div>
+                        </div>
+                    </div>
+                </header>
+
+                <h3 class="ui center aligned icon header">
+                    <i class="pie chart circular arvore icon"></i>
+                    <div class="content">
+                        Solução
+                    </div>
+                </h3>
+
+                <article class="ui very padded secondary segment conteudoEtapas">
+
+                    <table class="ui striped celled unstackable table">
+                        <thead>
+                        <tr>
+                            <th class="no-sort" colspan="4">
+                                <div class="ui teal ribbon large label">Monitoramento</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Rio</th>
+                            <th>Ponto Monitoramento</th>
+                            <th>Entorno</th>
+                            <th>Data da Coleta</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ rio }}</td>
+                            <td>{{ monitoramento.ponto_monitoramento }}</td>
+                            <td>{{ entorno }}</td>
+                            <td>{{ monitoramento.data_monitoramento }}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="4">
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                    <table class="ui striped celled unstackable table">
+                        <thead>
+                        <tr>
+                            <th class="no-sort" colspan="4">
+                                <div class="ui teal ribbon large label">Casos</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Risco</th>
+                            <th>Solução</th>
+                            <th class="collapsing center aligned" colspan="2">Utilizar solução</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if resultados %}
+                            {% for resultado in resultados %}
+                                <tr>
+                                    <td>
+                                        {% if resultado.2 == 'A' %}
+                                            Alto
+                                        {% elif resultado.2 == 'M' %}
+                                            Médio
+                                        {% else %}
+                                            Baixo
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ resultado.1 }}
+                                    </td>
+                                    <td>
+                                        <a class="cursorPointer utilizarSolucao"
+                                           onclick="monitoramento_solucao({{ resultado.0 }})">
+                                            <i class="ui checkmark green large icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="cursorPointer editarSolucao"
+                                           onclick="monitoramento_editar({{ resultado.0 }});">
+                                            <i class="ui write grey large icon"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>Não há casos semelhantes ao seu.</td>
+                                <td>
+                                    <button class="ui labeled large botaoUpload icon button" onclick="abrir();">
+                                        <i class="icon add"></i>
+                                        Adicionar uma solução
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endif %}
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="4">
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </article>
+
+                <footer class="two ui buttons">
+                    <a href="{% url 'index' %}" class="ui left labeled icon secundary button">
+                        <i class="left arrow icon"></i>
+                        Voltar para a página inicial
+                    </a>
+
+                    <a href="/historico/" class="ui right labeled icon botaoProximo button">
+                        <i class="right arrow icon"></i>
+                        Histórico da paisagem
+                    </a>
+
+
+                </footer>
+
+
+            </div>
+
+
+        </div>
+
+
+    </article>
+
+    {% include 'monitoramento/modalEditarSolucao.html' %}
+    {% include 'monitoramento/modalUtilizarSolucao.html' %}
+    {% include 'monitoramento/modalAdicionarSolucao.html' %}
+
+{% endblock %}

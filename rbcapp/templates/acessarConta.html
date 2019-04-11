@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+
+    <div class="two wide column"></div>
+
+    <article class="twelve wide column">
+
+        <h3 class="ui huge center aligned icon header">
+            <i class="user arvore circular icon"></i>
+            <div class="content">
+                {{ user.first_name }}
+                <div class="sub header">{{ user.username }}</div>
+                <h3>Redefinição de senha</h3>
+            </div>
+        </h3>
+
+        <div class="ui secondary very padded segment">
+            <form method="POST" action="{% url 'acessar_conta' %}" class="ui large form">
+                {% csrf_token %}
+                {% if erro %}
+                    <div class="ui negative message"><i class="close icon"></i> {{ erro }} </div>
+                {% elif senha %}
+                    <div class="ui positive message"><i class="close icon"></i> {{ senha }} </div>
+                {% endif %}
+                <div class="equal width fields">
+                    <div class="field">
+                        <label>Senha</label>
+                        <input type="password" name="senha" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Digite a senha novamente</label>
+                        <input type="password" name="senha2" required>
+
+                    </div>
+                </div>
+
+
+                <div class="ui fluid buttons">
+                    <a href="{% url 'index' %}" class="ui button">Voltar</a>
+                    <button class="ui botaoUpload button" type="submit">Alterar senha</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </article>
+
+{% endblock %}

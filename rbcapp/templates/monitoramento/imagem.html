@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+{% load staticfiles %}
+{% block 'conteudo' %}
+    <div class="two wide column"></div>
+
+    <!--======================= FIM MENU VERTICAL ESQUERDO ============================== -->
+    <!--================================================================================= -->
+
+    <!--======================= CONTEÚDO PRINCIPAL [MEIO] ============================== -->
+    <!--================================================================================ -->
+    <article class="twelve wide column">
+
+        <div class="ui one column centered grid">
+
+            <div class="column">
+                <header class="ui ordered fluid tablet stackable steps">
+                    <a class="completed step">
+                        <div class="content">
+                            <div class="title">Selecionar Localização</div>
+                            <div class="description">Bacia, Rio, Ponto e Coleta</div>
+                        </div>
+                    </a>
+                    <div class="active step">
+                        <div class="content">
+                            <div class="title">Selecionar Imagem</div>
+                            <div class="description">Imagem referente a localização</div>
+                        </div>
+                    </div>
+                    <div class="disabled step">
+                        <div class="content">
+                            <div class="title">Selecionar Entorno</div>
+                            <div class="description">Entorno de acordo com a imagem</div>
+                        </div>
+                    </div>
+
+                    <div class="disabled step">
+                        <div class="content">
+                            <div class="title">Solução</div>
+                            <div class="description">Salvar a solução no histórico da paisagem</div>
+                        </div>
+                    </div>
+                </header>
+
+
+                <article class="ui center aligned basic segment">
+                    <button class="ui labeled large botaoUpload icon button adicionarImagem">
+                        <i class="icon add"></i>
+                        Adicionar Nova Imagem
+                    </button>
+                    <div class="ui horizontal divider">
+                        Ou
+                    </div>
+
+                    <div class="ui left icon action input">
+                        <h3 class="ui header">
+                            Selecione uma Imagem
+                        </h3>
+                    </div>
+
+                </article>
+                <form action="{% url 'monitoramento_entorno' %}" method="GET">
+                    {% csrf_token %}
+                    <article class="ui centered cards">
+                        {% for img in imgs %}
+
+                            <div class="ui card">
+                                <div class="image">
+                                    <span id="corner{{ img.id }}"></span>
+                                    <img src="/media/{{ img.imagem }}">
+                                </div>
+                                <div class="content">
+                                    <a class="header">{{ img.titulo }}</a>
+                                    <div class="meta">
+                                        <span class="date">{{ img.data_emissao }}</span>
+                                    </div>
+                                </div>
+                                <a class="ui green bottom attached button" id="img{{ img.id }}"
+                                   onclick="monitoramento_imagem({{ img.id }})">
+                                    <i class="add icon"></i>
+                                    Selecionar imagem
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </article>
+                    <input type="hidden" name="monitoramento" value="{{ monitoramento.id }}"/>
+                    <input type="hidden" name="imagem" id="imagem"><br>
+                    <div class="two ui buttons">
+                        <a href="{% url 'monitoramento_localizacao' %}" class="ui left labeled icon secundary button">
+                            <i class="left arrow icon"></i>
+                            Voltar
+                        </a>
+
+                        <button type="submit" class="ui right labeled icon botaoProximo button">
+                            <i class="right arrow icon"></i>
+                            Próximo Passo
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+    </article>
+    {% include 'monitoramento/modalAdicionarImagem.html' %}
+    <div class="two wide column"></div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+
+{% block 'conteudo' %}
+
+
+    <div class="two wide column">
+        {% include 'menu/menuVertical.html' %}
+    </div>
+
+    <article class="twelve wide column">
+
+        <div class="row">
+
+            <nav class="ui text stackable menu">
+                <h2 class="ui header">
+                    Rios
+                </h2>
+                <div onchange="rio_pesquisar_bacia()" class="ui right floated selection search dropdown item">
+                    <input type="hidden" name="Bacia Hidrografica" id="BaciaHidrografica">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Bacia Hidrográfica</div>
+                    <div class="menu">
+                        <div class="item" id="bh_pes" data-value="selecione">Todos</div>
+                        {% for bh in bhs %}
+                            <div class="item" id="bh_pes" data-value="{{ bh.id }}">{{ bh.nome }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+{#                <div class="item">#}
+{#                    <div class="ui icon large input">#}
+{#                        <input type="text" placeholder="Search...">#}
+{#                        <i class="inverted circular search link icon"></i>#}
+{#                    </div>#}
+{#                </div>#}
+
+            </nav>
+        </div>
+
+        <table class="ui striped celled unstackable table">
+            <thead>
+            <tr>
+                <th class="no-sort" colspan="5">
+                    <div class="ui teal ribbon large label">Lista de Rios</div>
+                    <button class="right floated ui labeled botaoUpload icon button adicionarRio">
+                        <i class="icon add"></i>
+                        Adicionar Rio
+                    </button>
+                </th>
+
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Dimensão</th>
+                <th>Bacia Hidrográfica</th>
+                <th class="collapsing center aligned" colspan="2">Ações</th>
+            </tr>
+            </thead>
+            <tbody id="tbrio">
+            {% if dados %}
+                {% for dado in dados %}
+                <tr>
+                    <td>{{ dado.nome }}</td>
+                    <td>{{ dado.dimensao }}</td>
+                    <td id="bacia{{ dado.id }}">{{ dado.bacia_hidrografica }}</td>
+                    <td class="collapsing center aligned">
+                        <input type="hidden" id="{{ dado.id }}" value="{{ dado.nome }}"/>
+                        <a class="cursorPointer editarRio" onclick="rio_editar({{ dado.id }});">
+                            <i class="ui write grey large icon"></i>
+                        </a>
+                    </td>
+                    <td class="collapsing center aligned">
+
+                        <a class="cursorPointer excluirRio" onclick="rio_excluir({{ dado.id }});">
+                            <i class="ui trash red large icon"></i>
+                        </a>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>Não há dados cadastrados.</td></tr>
+            {% endif %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui right floated pagination secondary menu" id="page">
+                        {% if dados.has_previous %}
+                            <a href="?page={{ dados.previous_page_number }}" class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                        {% endif %}
+                        <a class="item">Página {{ dados.number }} de {{ dados.paginator.num_pages }}</a>
+                        {% if dados.has_next %}
+                            <a href="?page={{ dados.next_page_number }}" class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </article>
+
+
+
+    {% include 'rio/modalAdicionarRio.html' %}
+    {% include 'rio/modalEditarRio.html' %}
+    {% include 'rio/modalExcluirRio.html' %}
+
+{% endblock %}

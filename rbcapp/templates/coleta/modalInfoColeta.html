@@ -1,0 +1,45 @@
+<div class="ui modal modalInfoColeta">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Detalhes da Coleta
+    </div>
+    <div>
+        <table class="ui striped celled unstackable table">
+            <thead>
+            <tr>
+                <th class="no-sort" colspan="3">
+                    <div class="ui teal ribbon large label">Coleta</div>
+                </th>
+            </tr>
+            <tr>
+                <th>Rio</th>
+                <th>Ponto</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody id="tbinfo">
+            </tbody>
+        </table>
+
+        <table class="ui striped celled unstackable table">
+            <thead>
+            <tr>
+                <th class="no-sort" colspan="2">
+                    <div class="ui teal ribbon large label">Valores coletados</div>
+                </th>
+            </tr>
+            <tr>
+                <th>Substância</th>
+                <th>Valor coletado</th>
+            </tr>
+            </thead>
+            <tbody id="tbsubs">
+                {% for sub in substancias %}
+                    <tr><td>{{ sub.nome }}</td><td> </td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</div>

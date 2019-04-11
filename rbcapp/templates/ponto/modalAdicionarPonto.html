@@ -1,0 +1,77 @@
+<div class="ui modal modalAdicionarPonto">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Cadastrar Ponto
+    </div>
+
+    <form method="POST" action="{% url 'ponto_add' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Latitude</label>
+
+            <div class="ui corner labeled input">
+                <input name="latitude" pattern="(\d+\.\-?)+" required="True" title="Apenas números, - e ." type="text">
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Longitude</label>
+
+            <div class="ui corner labeled input">
+                <input name="longitude" pattern="(\d+\.\-?)+" required="True" title="Apenas números, - e ." type="text">
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Bacia Hidrográfica</label>
+
+            <div class="ui corner labeled input">
+
+                <select onchange="bacia_para_rio()" name="bh" id="bh">
+                    <option value="selecione">Selecione uma bacia hidrografica</option>
+                    {% for bh in bhs %}
+                        <option value="{{ bh.id }}">{{ bh.nome }}</option>
+                    {% endfor %}
+                </select>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Rio</label>
+
+            <div class="ui corner labeled input">
+
+                <select name="rio" id="rio" disabled="True">
+                    <option>Selecione primeiro uma bacia hidrográica</option>
+                </select>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Cadastrar"/>
+        </div>
+    </form>
+
+
+</div>

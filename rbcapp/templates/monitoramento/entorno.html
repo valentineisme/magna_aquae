@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+{% load staticfiles %}
+{% block 'conteudo' %}
+    <div class="two wide column computer only"></div>
+
+    <!--======================= FIM MENU VERTICAL ESQUERDO ============================== -->
+    <!--================================================================================= -->
+
+    <!--======================= CONTEÚDO PRINCIPAL [MEIO] ============================== -->
+    <!--================================================================================ -->
+    {#    <article class="twelve wide column">#}
+    {##}
+    {#        <div class="ui one column centered grid">#}
+
+    <article class="sixteen wide tablet twelve wide computer column">
+
+        <div class="ui one column centered conteudoEtapas grid">
+
+            <div class="column">
+                <header class="ui ordered fluid tablet stackable steps">
+                    <a class="completed step">
+                        <div class="content">
+                            <div class="title">Selecionar Localização</div>
+                            <div class="description">Bacia, Rio, Ponto e Coleta</div>
+                        </div>
+                    </a>
+                    <a class="completed step">
+                        <div class="content">
+                            <div class="title">Selecionar Imagem</div>
+                            <div class="description">Imagem referente a localização</div>
+                        </div>
+                    </a>
+                    <div class="active step">
+                        <div class="content">
+                            <div class="title">Selecionar Entorno</div>
+                            <div class="description">Entorno de acordo com a imagem</div>
+                        </div>
+                    </div>
+                    <div class="step disabled">
+                        <div class="content">
+                            <div class="title">Solução</div>
+                            <div class="description">Salvar a solução no histórico da paisagem</div>
+                        </div>
+                    </div>
+                </header>
+
+                <article class="ui grid center aligned basic stackable conteudoEtapas segment">
+                    <div class="sixteen wide column">
+
+                        <section>
+                            <h3>Selecione um entorno</h3>
+
+                            <div class="parent zoomImagemMonitoramento">
+                                <div class="panzoom">
+                                    <img src="/media/{{ img.imagem }}" width="400" height="400">
+                                </div>
+                            </div>
+
+                            <footer class="ui two column grid">
+                                <div class="column">
+                                    <div class="ui slider range basic segment">
+                                        <input type="range" class="zoom-range">
+                                    </div>
+                                </div>
+
+                                <div class="column">
+
+                                    <div class="ui basic segment">
+                                        <div class="ui fluid buttons">
+                                            <button class="ui button  zoom-in"><i class="zoom icon"></i></button>
+                                            <button class="ui button zoom-out"><i class="zoom out icon"></i></button>
+                                            <button class="ui button reset"><i class="undo icon"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </footer>
+
+
+                            <script>
+
+                            </script>
+                        </section>
+
+                        <form method="GET" action="{% url 'monitoramento_solucao' %}">
+                            {% csrf_token %}
+                            <div class="ui right floated large form">
+                                <div class="field">
+                                    <label>Adicionar entorno</label>
+
+                                    <div class="ui dropdown search selection">
+
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Selecione o entorno</div>
+                                        <div class="menu">
+                                            {% for entorno in entornos %}
+                                                <div onclick="monitoramento_entorno({{ entorno.id }})" class="item">
+                                                    <div style="background-color: {{ entorno.cor }} !important;"
+                                                         class="ui empty circular label"></div>
+                                                    {{ entorno.variavel_entorno }}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                </article>
+                <input type="hidden" name="entorno" id="entorno" onchange="monitoramento_entorno2();"/>
+                <input type="hidden" name="monitoramento" value="{{ monitoramento }}"/>
+                <input type="hidden" name="imagem" value="{{ img.id }}"/>
+                <div class="two ui buttons">
+                    <a href="#" onClick="javascript:history.go(-1);" class="ui left labeled icon secundary button">
+                        <i class="left arrow icon"></i>
+                        Voltar
+                    </a>
+
+                    <button class="ui right labeled icon botaoProximo button">
+                        <i class="right arrow icon"></i>
+                        Buscar Solução
+                    </button>
+
+
+                </div>
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </article>
+
+{% endblock %}

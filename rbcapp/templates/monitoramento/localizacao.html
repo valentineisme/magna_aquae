@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+
+    <div class="two wide column" xmlns="http://www.w3.org/1999/html"></div>
+
+    <article class="twelve wide column">
+
+        <div class="ui one column centered conteudoEtapas grid">
+
+            <div class="column">
+
+                <header class="ui ordered fluid tablet stackable steps">
+                    <div class="active step">
+                        <div class="content">
+                            <div class="title">Selecionar Localização</div>
+                            <div class="description">Bacia, Rio, Pontere Coleta</div>
+                        </div>
+                    </div>
+                    <div class="disabled step">
+                        <div class="content">
+                            <div class="title">Selecionar Imagem</div>
+                            <div class="description">Imagem referente a localização</div>
+                        </div>
+                    </div>
+                    <div class="disabled step">
+                        <div class="content">
+                            <div class="title">Selecionar Entorno</div>
+                            <div class="description">Entorno de acordo com a imagem</div>
+                        </div>
+                    </div>
+                    <div class="disabled step">
+                        <div class="content">
+                            <div class="title">Solução</div>
+                            <div class="description">Salvar a solução no histórico da paisagem</div>
+                        </div>
+                    </div>
+                </header>
+
+                <h3 class="ui center aligned icon header">
+                    <i class="tree arvore circular icon"></i>
+                    <div class="content">
+                        Monitoramento Ambiental
+                        <div class="sub header">Preencha corretamente todos os campos, para buscar a situação ambiental
+                            da Bacia hidrográfica.
+                        </div>
+                    </div>
+                </h3>
+                <form action="{% url 'monitoramento_localizacao' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="ui secondary segment large form formMonitoramento">
+
+                        <div class="equal width fields">
+                            <div class="field">
+                                <label>Selecionar Bacia Hidrográfica</label>
+                                <select onchange="bacia_para_rio()" name="bh" id="bh" required="True">
+                                    <option value="selecione">Selecione uma bacia hidrografica</option>
+                                    {% for bh in bhs %}
+                                        <option value="{{ bh.id }}">{{ bh.nome }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Selecionar Rio</label>
+                                <select onchange="rio_para_ponto()" name="rio" id="rio" disabled="True" required="True">
+                                    <option value="selecione">Selecione primeiro uma bacia hidrográfica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="equal width fields">
+                            <div class="field">
+                                <label>Selecionar ponto</label>
+                                <select onchange="ponto_para_coleta()" name="ponto" id="ponto_monitoramento"
+                                        disabled="True" required="True">
+                                    <option value="selecione">Selecione primeiro um rio</option>
+                                </select>
+
+                            </div>
+
+                            <div class="field">
+                                <label>Data da Coleta</label>
+                                <select name="coleta" id="coleta" disabled="True" required="True">
+                                    <option value="selecione">Selecione primeiro um ponto</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="ui two bottom attached buttons">
+                        <a class="ui left labeled icon secundary button disabled">
+                            <i class="left arrow icon"></i>
+                            Voltar
+                        </a>
+
+                        <button type="submit" class="ui right labeled icon botaoProximo button">
+                            <i class="right arrow icon"></i>
+                            Próximo Passo
+                        </button>
+                </form>
+
+            </div>
+
+        </div>
+
+
+        </div>
+
+
+    </article>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<div class="ui modal modalUtilizarSolucao">
+    <div class="header"><i class="ui warning large circle icon"></i> Utilizar Solução</div>
+    <div class="content mensagemExcluir">
+        <p>Tem certeza que deseja utilizar essa solução para essa coleta?</p>
+    </div>
+    <div class="actions">
+        <form method="POST" action="{% url 'monitoramento_solucao' %}">
+            {% csrf_token %}
+            <input type="hidden" name="monitoramento" value="{{ monitoramento.id }}"/>
+            <input type="hidden" name="caso" id="caso"/>
+            <input type="hidden" name="entorno" value="{{ entorno.id }}"/>
+            <input type="hidden" name="imagem" value="{{ img }}"/>
+            <div class="ui deny button">Cancelar</div>
+            <input class="ui right teal button" type="submit" value="Utilizar"/>
+        </form>
+
+    </div>
+</div>

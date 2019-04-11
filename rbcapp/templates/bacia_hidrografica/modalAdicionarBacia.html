@@ -1,0 +1,33 @@
+<div class="ui modal modalAdicionarBacia">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Cadastrar Bacia Hidrogarifca
+    </div>
+
+    <form method="POST" action="{% url 'bacia_hidrografica_add' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Nome da Bacia Hidrográfica</label>
+
+            <div class="ui corner labeled input">
+                {{ form.nome }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Cadastrar"/>
+        </input>
+        </div>
+    </form>
+
+
+</div>

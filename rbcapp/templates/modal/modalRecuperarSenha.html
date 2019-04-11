@@ -1,0 +1,22 @@
+<div class="ui modal modalRecuperarSenha">
+    <div class="header"><i class="ui user small teal inverted circular icon"></i>Recuperar senha</div>
+    <form method="GET" action="{% url 'recuperar_senha' %}" class="ui content form">
+
+        <div class="field">
+            <label>Usuário</label>
+            <div class="ui corner labeled input">
+                {{ form.username }}
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <div class="ui cancel button">Cancelar</div>
+            <button class="ui right teal button">Começar recuperação</button>
+            </a>
+        </div>
+    </form>
+</div>

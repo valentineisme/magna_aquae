@@ -1,0 +1,53 @@
+<div class="ui modal modalEditarSolucao">
+    <i class="close icon"></i>
+    <div class="header">
+        <i class="ui add small teal inverted circular icon"></i> Editar solução e utilizá-la
+    </div>
+
+    <form method="POST" action="{% url 'monitoramento_solucao' %}" class="ui content form">
+
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Risco</label>
+
+            <div class="ui corner labeled input">
+                <select id="id_risco" name="risco" required>
+                    <option value="B">Baixo</option>
+                    <option value="M">Médio</option>
+                    <option value="A">Alto</option>
+                </select>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Solução Sugerida</label>
+
+            <div class="ui corner labeled input">
+                <textarea cols="40" id="id_solucao_sugerida" name="solucao_sugerida" rows="10" required></textarea>
+                <div class="ui corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+            </div>
+
+        </div>
+        <input type="hidden" name="monitoramento" value="{{ monitoramento.id }}"/>
+        <input type="hidden" name="entorno" value="{{ entorno.id }}"/>
+        <input type="hidden" name="imagem" value="{{ img }}"/>
+        <input type="hidden" name="caso_id" id="caso"/>
+
+        <div class="actions">
+            <div class="ui deny button">
+                Cancelar
+            </div>
+            <input type="submit" class="ui right teal button" value="Editar e Utilizar"/>
+            </input>
+        </div>
+    </form>
+
+
+</div>

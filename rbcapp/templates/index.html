@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Magna Aquae</title>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/paginaInicial.css' %}">
+    <link rel="stylesheet" href="{% static 'css/semantic/semantic.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Marvel" rel="stylesheet">
+</head>
+
+<body>
+{% if user.is_authenticated %}
+    {% include 'menu/menuPrincipal.html' %}
+{% else %}
+    {% include 'menu/menuPaginaInicial.html' %}
+{% endif %}
+<section class="paginaInicial">
+
+    <div class="textoMonitoramento">
+        <div class="ui header">Monitoramento de Bacias Hidrográficas</div>
+        {% if user.is_authenticated %}
+
+        {% else %}
+            <button class="ui green large button botaoFacaParte cadastro">
+                Faça Parte!
+            </button>
+            <button class="ui large right labeled icon button botaoCorVerde acessarConta">
+                <a>
+                    <i class="chevron right icon"></i>
+                    Veja Bacias Hidrográficas Monitoradas
+                </a>
+            </button>
+        {% endif %}
+    </div>
+
+
+</section>
+
+{#<section class="pequenaDescricao">#}
+{##}
+{#    <h2 class="ui center inverted aligned icon header">#}
+{#        <i class="circular tree icon"></i>#}
+{#        Na rede!#}
+{##}
+{#        <div class="sub header">Escrever alguma coisa aqui para a tela ficar mais bonita</div>#}
+{#    </h2>#}
+{#</section>#}
+{##}
+{#<section class="descricaoMeio">#}
+{##}
+{#</section>#}
+{##}
+{#<section class="informacoesAdicionais">#}
+{##}
+{#</section>#}
+
+<footer class="ui four column stackable grid descricaoFim">
+    <div class="row">
+        <h3>Apoio</h3>
+    </div>
+
+    <div class="center aligned column">
+        <img src="{% static 'img/logo-ifc.png' %}">
+    </div>
+    <div class="center aligned column">
+        <img src="{% static 'img/ecobabitonga.png' %}">
+    </div>
+    <div class="center aligned column">
+        <img src="{% static 'img/logo_fabrica.jpg' %}">
+    </div>
+
+    <div class="center aligned column">
+        <img src="{% static 'img/cnpq.png' %}">
+    </div>
+
+    </div>
+
+</footer>
+
+{% include 'modal/modalAcessarConta.html' %}
+{% include 'modal/modalCadastro.html' %}
+{% include 'modal/modalCadastroOkay.html' %}
+{% include 'modal/modalRecuperarSenha.html' %}
+
+<script src="{% static 'js/jquery-v1.min.js' %}"></script>
+<script src="{% static 'css/semantic/semantic.min.js' %}"></script>
+<script src="{% static 'js/ajax.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/sortTable.js' %}"></script>
+<script src="{% static 'owl/owl.carousel.js' %}"></script>
+<script src="{% static 'js/jquery.panzoom.js' %}"></script>
+<script src="{% static 'js/range.js' %}"></script>
+<script>
+{% if erro_cad %}
+    $('.modalCadastro').modal('show');
+{% elif cadastro %}
+    $('.modalCadastroOkay').modal('show');
+{% endif %}
+</script>
+</body>
+
+</html>
+
+
+

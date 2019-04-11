@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+{% load staticfiles %}
+{% block 'conteudo' %}
+    <div class="two wide column"></div>
+
+    <!--======================= FIM MENU VERTICAL ESQUERDO ============================== -->
+    <!--================================================================================= -->
+
+    <!--======================= CONTEÚDO PRINCIPAL [MEIO] ============================== -->
+    <!--================================================================================ -->
+    <article class="twelve wide column">
+
+        <div class="ui one column centered grid">
+
+            <div class="column">
+
+
+                <article class="ui center aligned basic segment">
+                    <button class="ui labeled large botaoUpload icon button adicionarImagem">
+                        <i class="icon add"></i>
+                        Adicionar Nova Imagem
+                    </button>
+                    <div class="ui divider"></div>
+
+                    <form class="ui large form">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Selecionar Bacia Hidrográfica</label>
+                                <select onchange="img_bacia_para_rio()" class="ui search dropdown" id="bh_pes">
+                                    <option value="selecione">Escolha uma bacia hidrográfica</option>
+                                    {% for bh in bhs %}
+                                        <option value="{{ bh.id }}">{{ bh.nome }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>Selecionar Rio</label>
+                                <select onchange="imagem_pesquisar()" name="rio_pes" id="rio_pes" disabled="True">
+                                    <option>Escolha primeiro uma Bacia Hidrográfica</option>
+                                </select>
+                            </div>
+                            {#                            <div class="field">#}
+                            {#                                <label>Pesquisar por nome</label>#}
+                            {#                                <div class="ui left icon action input">#}
+                            {#                                    <i class="search icon"></i>#}
+                            {#                                    <input type="text">#}
+                            {#                                    <div class="ui grey submit grey button">Buscar</div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                        </div>
+
+
+                    </form>
+
+
+                </article>
+
+                <article class="ui centered cards" id="div_img">
+                    {% if imgs %}
+                        {% for img in imgs %}
+
+                            <div class="ui card">
+                                <div class="image">
+                                    <img src="/media/{{ img.imagem }}">
+                                </div>
+                                <div class="content">
+                                    <a class="header">{{ img.titulo }}</a>
+                                    <div class="item">
+                                        {{ img.rio }}
+                                    </div>
+                                    <div class="item">
+                                        {{ img.ponto_monitoramento }}
+                                    </div>
+                                    <div class="meta">
+                                        <span class="date">{{ img.data_emissao }}</span>
+                                    </div>
+                                    <div class="ui divided list">
+                                        <div class="item">
+                                            <a class="cursorPointer excluirImagem" onclick="img_excluir({{ img.id }});">
+                                                <i class="ui trash red large icon"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        Não há imagens cadastradas.
+                    {% endif %}
+
+
+                </article>
+
+                {#                <nav class="ui pagination secondary menu">#}
+                {#                    <a class="icon item">#}
+                {#                        <i class="left chevron icon"></i>#}
+                {#                    </a>#}
+                {#                    <a class="active item">1</a>#}
+                {#                    <a class="item">2</a>#}
+                {#                    <a class="item">3</a>#}
+                {#                    <a class="item">4</a>#}
+                {#                    <a class="icon item">#}
+                {#                        <i class="right chevron icon"></i>#}
+                {#                    </a>#}
+                {#                </nav>#}
+
+
+            </div>
+
+        </div>
+
+
+    </article>
+
+    <div class="two wide column"></div>
+
+    {% include 'imagem/modalAdicionarImagem.html' %}
+    {% include 'imagem/modalExcluirImagem.html' %}
+{% endblock %}

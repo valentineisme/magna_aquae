@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block 'menu' %}
+    {% include 'menu/menuPrincipal.html' %}
+{% endblock %}
+
+
+{% block 'conteudo' %}
+
+
+    <div class="two wide column">
+        {#        {% include 'menu/menuVertical.html' %}#}
+    </div>
+
+    <article class="twelve wide column">
+
+        <div class="row">
+
+            <nav class="ui text stackable menu">
+                <h2 class="ui header">
+                    Casos
+                </h2>
+
+            </nav>
+        </div>
+
+        <table class="ui striped celled unstackable table">
+            <thead>
+            <tr>
+                <th class="no-sort" colspan="7">
+                    <div class="ui teal ribbon large label">Lista de Casos</div>
+                    <button class="right floated ui labeled botaoUpload icon button adicionarCaso">
+                        <i class="icon add"></i>
+                        Adicionar Caso
+                    </button>
+                </th>
+
+            </tr>
+            <tr>
+                <th>Classificação IAP</th>
+                <th>Classificação IVA</th>
+                <th>Entorno</th>
+                <th>Risco</th>
+                <th>Solução Sugerida</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if dados %}
+                {% for dado in dados %}
+                    <tr>
+                        <td>
+                            {% if dado.classificacao_iap == 'otima' %}
+                                Ótima
+                            {% elif dado.classificacao_iap == 'boa' %}
+                                Boa
+                            {% elif dado.classificacao_iap == 'regular' %}
+                                Regular
+                            {% elif dado.classificacao_iap == 'ruim' %}
+                                Ruim
+                            {% else %}
+                                Péssima
+                            {% endif %}
+
+                        </td>
+                        <td>
+                            {% if dado.classificacao_iva == 'otima' %}
+                                Ótima
+                            {% elif dado.classificacao_iva == 'boa' %}
+                                Boa
+                            {% elif dado.classificacao_iva == 'regular' %}
+                                Regular
+                            {% elif dado.classificacao_iva == 'ruim' %}
+                                Ruim
+                            {% else %}
+                                Péssima
+                            {% endif %}
+                        </td>
+                        <td>{{ dado.entorno }}</td>
+                        <td>
+                            {% if dado.risco == 'A' %}
+                                Alto
+                            {% elif dado.risco == 'M' %}
+                                Médio
+                            {% else %}
+                                Baixo
+                            {% endif %}
+                        </td>
+                        <td>{{ dado.solucao_sugerida }}</td>
+                        <td>
+                            <input type="hidden" id="{{ dado.id }}" value="{{ dado.nome }}"/>
+                            <a class="cursorPointer excluirCaso" onclick="caso_excluir({{ dado.id }});">
+                                <i class="ui trash red large icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>Não há dados cadastrados.</td>
+                </tr>
+            {% endif %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="7">
+                    <div class="ui right floated pagination secondary menu">
+                        {% if dados.has_previous %}
+                            <a href="?page={{ dados.previous_page_number }}" class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                        {% endif %}
+                        <a class="item">Página {{ dados.number }} de {{ dados.paginator.num_pages }}</a>
+                        {% if dados.has_next %}
+                            <a href="?page={{ dados.next_page_number }}" class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </article>
+
+
+
+    {% include 'caso/modalAdicionarCaso.html' %}
+    {% include 'caso/modalEditarCaso.html' %}
+    {% include 'caso/modalExcluirCaso.html' %}
+
+{% endblock %}
